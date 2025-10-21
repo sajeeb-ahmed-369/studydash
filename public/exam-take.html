@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Web Design & JavaScript Final Exam</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #f7f9fc;
+        }
+
+        .container {
+            max-width: 900px;
+            margin-top: 40px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 id="exam-title" class="text-center mb-4">Web Design & JavaScript Final Exam (150 mins)</h2>
+        <div id="exam-content"></div>
+        <button id="submitExam" class="btn btn-success mt-3">Submit Exam</button>
+    </div>
+
+    <script>
+        const exam = {
+            title: "Web Design & JavaScript Final Exam",
+            duration_minutes: 150,
+            questions: [
+                // --- HTML5 Section ---
+                {
+                    id: 1,
+                    question_text: "Which HTML5 tag is used to define navigation links?",
+                    choices: [
+                        { label: "A", text: "<nav>" },
+                        { label: "B", text: "<header>" },
+                        { label: "C", text: "<footer>" },
+                        { label: "D", text: "<section>" }
+                    ]
+                },
+                {
+                    id: 2,
+                    question_text: "Which HTML attribute specifies an input’s placeholder?",
+                    choices: [
+                        { label: "A", text: "placeholder" },
+                        { label: "B", text: "value" },
+                        { label: "C", text: "alt" },
+                        { label: "D", text: "title" }
+                    ]
+                },
+
+                // --- CSS3 Section ---
+                {
+                    id: 3,
+                    question_text: "What does CSS box-model include?",
+                    choices: [
+                        { label: "A", text: "Margin" },
+                        { label: "B", text: "Border" },
+                        { label: "C", text: "Padding" },
+                        { label: "D", text: "All of the above" }
+                    ]
+                },
+                {
+                    id: 4,
+                    question_text: "Which CSS selector selects elements with class 'btn'?",
+                    choices: [
+                        { label: "A", text: "#btn" },
+                        { label: "B", text: ".btn" },
+                        { label: "C", text: "btn" },
+                        { label: "D", text: "*btn" }
+                    ]
+                },
+
+                // --- Bootstrap Section ---
+                {
+                    id: 5,
+                    question_text: "Bootstrap grid uses how many columns by default?",
+                    choices: [
+                        { label: "A", text: "10" },
+                        { label: "B", text: "12" },
+                        { label: "C", text: "16" },
+                        { label: "D", text: "24" }
+                    ]
+                },
+                {
+                    id: 6,
+                    question_text: "Which Bootstrap class creates a responsive image?",
+                    choices: [
+                        { label: "A", text: ".img-fluid" },
+                        { label: "B", text: ".img-responsive" },
+                        { label: "C", text: ".image-auto" },
+                        { label: "D", text: ".img-scale" }
+                    ]
+                },
+
+                // --- JavaScript Section ---
+                {
+                    id: 7,
+                    question_text: "What does '===' do in JavaScript?",
+                    choices: [
+                        { label: "A", text: "Compares values only" },
+                        { label: "B", text: "Compares values and types" },
+                        { label: "C", text: "Assigns a value" },
+                        { label: "D", text: "None of the above" }
+                    ]
+                },
+                {
+                    id: 8,
+                    question_text: "Which method logs data to console?",
+                    choices: [
+                        { label: "A", text: "console.print()" },
+                        { label: "B", text: "console.log()" },
+                        { label: "C", text: "log.print()" },
+                        { label: "D", text: "alert.log()" }
+                    ]
+                },
+
+                // --- Short Questions ---
+                { id: 9, question_text: "Explain the HTML5 semantic elements and why they are important." },
+                { id: 10, question_text: "Describe the CSS box model and how padding and margin affect layout." },
+                { id: 11, question_text: "What is the Bootstrap grid system? Give an example of using col-md-6." },
+                { id: 12, question_text: "Explain JavaScript variable types and difference between var, let, const." },
+                { id: 13, question_text: "Describe event delegation in JavaScript and why it's useful." },
+
+                // --- Coding Problems ---
+                { id: 14, question_text: "Build a responsive navbar using Bootstrap 5 that collapses on small screens." },
+                { id: 15, question_text: "Write a JavaScript function that validates a form: ensure 'name' is not empty and email contains '@'." },
+                { id: 16, question_text: "Create a CSS layout using Flexbox to center a card both vertically and horizontally." },
+
+                // --- Final Mini Project ---
+                { id: 17, question_text: "Create a small web page (mini project) combining HTML, Bootstrap and JS: a to-do app with add/remove/mark-done and responsive layout." }
+            ]
+        };
+
+        function loadExam() {
+            let html = '';
+            exam.questions.forEach((q, index) => {
+                html += `<div class="question"><p><b>${index + 1}. ${q.question_text}</b></p>`;
+
+                if (q.choices && Array.isArray(q.choices)) {
+                    q.choices.forEach(choice => {
+                        html += `
+          <label>
+            <input type="radio" name="question_${q.id}" value="${choice.label}"> 
+            ${choice.label}. ${choice.text}
+          </label><br>`;
+                    });
+                } else {
+                    html += `<textarea name="question_${q.id}" placeholder="Write your answer here..."></textarea>`;
+                }
+
+                html += `</div><hr>`;
+            });
+            document.getElementById('exam-content').innerHTML = html;
+        }
+
+        document.getElementById('submitExam').addEventListener('click', () => {
+            alert('✅ Exam submitted successfully! (Frontend only mode)');
+        });
+
+        window.onload = loadExam;
+    </script>
+</body>
+
+</html>

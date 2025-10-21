@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Exams</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .exam-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Available Exams</h2>
+    <div id="exams-container">Loading exams...</div>
+
+    <script>
+        async function loadExams() {
+            try {
+                const res = await fetch('/api/exams', { credentials: 'include' });
+                const exams = await res.json();
+
+                const container = document.getElementById('exams-container');
+                container.innerHTML = '';
+
+                exams.forEach(exam => {
+                    const div = document.createElement('div');
+                    div.className = 'exam-card';
+                    div.innerHTML = `
+        <h3>${exam.title} (${exam.duration_minutes} mins)</h3>
+        <p>${exam.description}</p>
+        <button onclick="startExam(${exam.id})">Start Exam</button>
+      `;
+                    container.appendChild(div);
+                });
+            } catch (err) {
+                console.error(err);
+                document.getElementById('exams-container').innerText = 'Failed to load exams';
+            }
+        }
+
+        function startExam(examId) {
+            window.location.href = `/exam-take.html?exam_id=${examId}`;
+        }
+
+        loadExams();
+    </script>
+</body>
+
+</html>

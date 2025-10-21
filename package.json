@@ -1,0 +1,26 @@
+{
+  "name": "student-results-system",
+  "version": "1.0.0",
+  "description": "Student Results Dashboard with Express backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^4.18.2",
+    "express-session": "^1.18.2",
+    "pg": "^8.16.3"
+  },
+  "keywords": [
+    "express",
+    "student",
+    "dashboard",
+    "results"
+  ],
+  "author": "",
+  "license": "MIT"
+}

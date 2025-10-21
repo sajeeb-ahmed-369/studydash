@@ -1,0 +1,497 @@
+[
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "Which HTML5 tag is used to define navigation links?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "<nav>"
+      },
+      {
+        "id": "A",
+        "text": "<section>"
+      },
+      {
+        "id": "B",
+        "text": "<header>"
+      },
+      {
+        "id": "C",
+        "text": "<navlink>"
+      }
+    ],
+    "correct_answer": "<nav>",
+    "marks": 2,
+    "order_index": 1
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "What does CSS box-model include?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "margin, border, padding, content"
+      },
+      {
+        "id": "A",
+        "text": "margin, padding only"
+      },
+      {
+        "id": "B",
+        "text": "border, padding"
+      },
+      {
+        "id": "C",
+        "text": "content only"
+      }
+    ],
+    "correct_answer": "margin, border, padding, content",
+    "marks": 2,
+    "order_index": 2
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "Which property centers a block element horizontally?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "margin: 0 auto;"
+      },
+      {
+        "id": "A",
+        "text": "text-align:center;"
+      },
+      {
+        "id": "B",
+        "text": "align:center;"
+      },
+      {
+        "id": "C",
+        "text": "position:center;"
+      }
+    ],
+    "correct_answer": "margin: 0 auto;",
+    "marks": 2,
+    "order_index": 3
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "Bootstrap grid uses how many columns by default?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "12"
+      },
+      {
+        "id": "A",
+        "text": "6"
+      },
+      {
+        "id": "B",
+        "text": "4"
+      },
+      {
+        "id": "C",
+        "text": "16"
+      }
+    ],
+    "correct_answer": "12",
+    "marks": 2,
+    "order_index": 4
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "Which tag is used to include JavaScript file?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "<script src='...'>"
+      },
+      {
+        "id": "A",
+        "text": "<js src='...'>"
+      },
+      {
+        "id": "B",
+        "text": "<javascript>"
+      },
+      {
+        "id": "C",
+        "text": "<link rel='script'>"
+      }
+    ],
+    "correct_answer": "<script src='...'>",
+    "marks": 2,
+    "order_index": 5
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "Which CSS selector selects elements with class 'btn'?",
+    "choices": [
+      {
+        "id": "@",
+        "text": ".btn"
+      },
+      {
+        "id": "A",
+        "text": "#btn"
+      },
+      {
+        "id": "B",
+        "text": "btn"
+      },
+      {
+        "id": "C",
+        "text": "*btn"
+      }
+    ],
+    "correct_answer": ".btn",
+    "marks": 2,
+    "order_index": 6
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "Which HTTP method is typically used to submit form data?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "POST"
+      },
+      {
+        "id": "A",
+        "text": "GET"
+      },
+      {
+        "id": "B",
+        "text": "DELETE"
+      },
+      {
+        "id": "C",
+        "text": "PUT"
+      }
+    ],
+    "correct_answer": "POST",
+    "marks": 2,
+    "order_index": 7
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "What does '===' do in JavaScript?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "Strict equality (type+value)"
+      },
+      {
+        "id": "A",
+        "text": "Assigns value"
+      },
+      {
+        "id": "B",
+        "text": "Loose equality"
+      },
+      {
+        "id": "C",
+        "text": "Not equal"
+      }
+    ],
+    "correct_answer": "Strict equality (type+value)",
+    "marks": 2,
+    "order_index": 8
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "Which event fires when a form is submitted?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "submit"
+      },
+      {
+        "id": "A",
+        "text": "click"
+      },
+      {
+        "id": "B",
+        "text": "change"
+      },
+      {
+        "id": "C",
+        "text": "input"
+      }
+    ],
+    "correct_answer": "submit",
+    "marks": 2,
+    "order_index": 9
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "Which Bootstrap class creates a responsive image?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "img-fluid"
+      },
+      {
+        "id": "A",
+        "text": "responsive-img"
+      },
+      {
+        "id": "B",
+        "text": "img-responsive"
+      },
+      {
+        "id": "C",
+        "text": "img-scale"
+      }
+    ],
+    "correct_answer": "img-fluid",
+    "marks": 2,
+    "order_index": 10
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "How do you declare a JavaScript function?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "function myFunc() {}"
+      },
+      {
+        "id": "A",
+        "text": "def myFunc() {}"
+      },
+      {
+        "id": "B",
+        "text": "fn myFunc() {}"
+      },
+      {
+        "id": "C",
+        "text": "func myFunc() {}"
+      }
+    ],
+    "correct_answer": "function myFunc() {}",
+    "marks": 2,
+    "order_index": 11
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "Which CSS property changes text color?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "color"
+      },
+      {
+        "id": "A",
+        "text": "text-color"
+      },
+      {
+        "id": "B",
+        "text": "font-color"
+      },
+      {
+        "id": "C",
+        "text": "fgcolor"
+      }
+    ],
+    "correct_answer": "color",
+    "marks": 2,
+    "order_index": 12
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "Which HTML attribute specifies an input's placeholder?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "placeholder"
+      },
+      {
+        "id": "A",
+        "text": "hint"
+      },
+      {
+        "id": "B",
+        "text": "title"
+      },
+      {
+        "id": "C",
+        "text": "alt"
+      }
+    ],
+    "correct_answer": "placeholder",
+    "marks": 2,
+    "order_index": 13
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "Which JavaScript method logs to console?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "console.log()"
+      },
+      {
+        "id": "A",
+        "text": "print()"
+      },
+      {
+        "id": "B",
+        "text": "echo()"
+      },
+      {
+        "id": "C",
+        "text": "log()"
+      }
+    ],
+    "correct_answer": "console.log()",
+    "marks": 2,
+    "order_index": 14
+  },
+  {
+    "exam_id": 1,
+    "type": "mcq",
+    "language": "en",
+    "question_text": "In CSS, how do you select an element with id 'main'?",
+    "choices": [
+      {
+        "id": "@",
+        "text": "#main"
+      },
+      {
+        "id": "A",
+        "text": ".main"
+      },
+      {
+        "id": "B",
+        "text": "main"
+      },
+      {
+        "id": "C",
+        "text": "*main"
+      }
+    ],
+    "correct_answer": "#main",
+    "marks": 2,
+    "order_index": 15
+  },
+  {
+    "exam_id": 1,
+    "type": "short",
+    "language": "en",
+    "question_text": "Explain the HTML5 semantic elements and why they are important.",
+    "choices": null,
+    "correct_answer": null,
+    "marks": 4,
+    "order_index": 16
+  },
+  {
+    "exam_id": 1,
+    "type": "short",
+    "language": "en",
+    "question_text": "Describe the CSS box model and how padding and margin affect layout.",
+    "choices": null,
+    "correct_answer": null,
+    "marks": 4,
+    "order_index": 17
+  },
+  {
+    "exam_id": 1,
+    "type": "short",
+    "language": "en",
+    "question_text": "What is the Bootstrap grid system? Give an example of using col-md-6.",
+    "choices": null,
+    "correct_answer": null,
+    "marks": 4,
+    "order_index": 18
+  },
+  {
+    "exam_id": 1,
+    "type": "short",
+    "language": "en",
+    "question_text": "Explain JavaScript variable types and difference between var, let, const.",
+    "choices": null,
+    "correct_answer": null,
+    "marks": 4,
+    "order_index": 19
+  },
+  {
+    "exam_id": 1,
+    "type": "short",
+    "language": "en",
+    "question_text": "Describe event delegation in JavaScript and why it's useful.",
+    "choices": null,
+    "correct_answer": null,
+    "marks": 4,
+    "order_index": 20
+  },
+  {
+    "exam_id": 1,
+    "type": "code",
+    "language": "en",
+    "question_text": "Build a responsive navbar using Bootstrap 5 that collapses on small screens.",
+    "choices": null,
+    "correct_answer": null,
+    "marks": 10,
+    "order_index": 21
+  },
+  {
+    "exam_id": 1,
+    "type": "code",
+    "language": "en",
+    "question_text": "Write a JavaScript function that validates a form: ensure 'name' is not empty and email contains '@'.",
+    "choices": null,
+    "correct_answer": null,
+    "marks": 10,
+    "order_index": 22
+  },
+  {
+    "exam_id": 1,
+    "type": "code",
+    "language": "en",
+    "question_text": "Create a CSS layout using Flexbox to center a card both vertically and horizontally.",
+    "choices": null,
+    "correct_answer": null,
+    "marks": 10,
+    "order_index": 23
+  },
+  {
+    "exam_id": 1,
+    "type": "project",
+    "language": "en",
+    "question_text": "Create a small web page (mini project) combining HTML, Bootstrap and JS: a to-do app with add/remove/mark-done and responsive layout. Submit zip or link to code.",
+    "choices": null,
+    "correct_answer": null,
+    "marks": 20,
+    "order_index": 24
+  }
+]

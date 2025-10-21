@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="myscores.title">My Scores - Student Results Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8) rotateY(90deg); }
+            to { opacity: 1; transform: scale(1) rotateY(0deg); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+        
+        @keyframes glowing {
+            0%, 100% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+            50% { box-shadow: 0 0 70px rgba(59, 130, 246, 1); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.8s ease-out forwards;
+        }
+        
+        .fade-in-up-delay {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .score-item-3d {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            box-shadow: 
+                20px 20px 40px rgba(0,0,0,0.1),
+                -10px -10px 20px rgba(255,255,255,0.7),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            transform: perspective(1000px) rotateY(0deg);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .score-item-3d:hover {
+            transform: perspective(1000px) rotateY(5deg) translateY(-8px) scale(1.02);
+            box-shadow: 
+                30px 30px 60px rgba(0,0,0,0.15),
+                -15px -15px 30px rgba(255,255,255,0.8),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+        }
+        
+        .total-score-3d {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            position: relative;
+            overflow: hidden;
+            animation: glowing 4s ease-in-out infinite;
+        }
+        
+        .total-score-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-star {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .pulse-element {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .progress-3d {
+            background: linear-gradient(90deg, #10b981, #059669, #047857);
+            box-shadow: 
+                inset 0 2px 4px rgba(0,0,0,0.1),
+                0 1px 0 rgba(255,255,255,0.3);
+        }
+        
+        /* Dark Theme Styles */
+        .dark .glass-card {
+            background: rgba(31, 41, 55, 0.7);
+            border: 1px solid rgba(75, 85, 99, 0.3);
+        }
+        
+        .dark .score-item-3d {
+            background: linear-gradient(145deg, #374151 0%, #4b5563 100%);
+            box-shadow: 
+                20px 20px 40px rgba(0,0,0,0.3),
+                -10px -10px 20px rgba(75, 85, 99, 0.1);
+        }
+        
+        .dark .score-item-3d:hover {
+            box-shadow: 
+                30px 30px 60px rgba(0,0,0,0.4),
+                -15px -15px 30px rgba(75, 85, 99, 0.2);
+        }
+        
+        .dark .total-score-3d {
+            background: linear-gradient(135deg, #374151 0%, #4b5563 50%, #6b7280 100%);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen transition-colors duration-300">
+    <!-- Navigation Bar -->
+    <nav class="glass-card fixed top-0 left-0 right-0 z-50 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center floating-star">
+                        <i class="fas fa-graduation-cap text-3xl text-blue-600 mr-2"></i>
+                        <span class="font-bold text-2xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400">StudyDash</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg" data-translate="nav.home">Home</a>
+                    <a href="/leaderboard.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg" data-translate="nav.leaderboard">Leaderboard</a>
+                    <a href="/myscores.html" class="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium shadow-lg" data-translate="nav.myscores">My Scores</a>
+                    <div id="authNavigation">
+                        <!-- Navigation will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-700 hover:text-blue-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-16 fade-in-up">
+                <h1 class="text-6xl font-bold text-gray-900 dark:text-white mb-6">
+                    <i class="fas fa-chart-line text-blue-600 dark:text-blue-400 mr-4 pulse-element"></i>
+                    <span data-translate="myscores.heading">My Scores</span>
+                </h1>
+                <p class="text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed" data-translate="myscores.subtitle">
+                    Track your progress and see how you're performing across all your assignments.
+                </p>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading" class="text-center py-12">
+                <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 dark:border-blue-400"></div>
+                <p class="mt-4 text-gray-600 dark:text-gray-300" data-translate="myscores.loading">Loading your scores...</p>
+            </div>
+
+            <!-- Scores Content -->
+            <div id="scores-content" class="hidden space-y-8">
+                <!-- Total Score Card -->
+                <div id="total-score-card" class="total-score-3d rounded-3xl p-12 text-white shadow-2xl scale-in">
+                    <div class="text-center">
+                        <div class="mb-6">
+                            <i class="fas fa-star text-8xl text-yellow-300 floating-star"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4" data-translate="myscores.total-score">Your Total Score</h2>
+                        <div class="text-8xl font-black mb-4 pulse-element" id="total-score">--</div>
+                        <p class="text-2xl opacity-95 font-medium" data-translate="myscores.great-work">Outstanding performance! Keep shining!</p>
+                    </div>
+                </div>
+
+                <!-- Individual Scores -->
+                <div class="score-item-3d rounded-3xl p-10 shadow-2xl">
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center">
+                        <i class="fas fa-list-alt text-blue-600 dark:text-blue-400 mr-4 text-4xl"></i>
+                        <span data-translate="myscores.assignment-breakdown">Assignment Breakdown</span>
+                    </h3>
+                    
+                    <div id="scores-list" class="space-y-4">
+                        <!-- Score items will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Stats Summary -->
+                <div class="score-item-3d rounded-3xl p-10 shadow-2xl">
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center">
+                        <i class="fas fa-chart-bar text-green-600 dark:text-green-400 mr-4 text-4xl"></i>
+                        <span data-translate="myscores.performance-summary">Performance Summary</span>
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="stats-summary">
+                        <!-- Stats will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Fetch my scores data and render
+        async function loadMyScores() {
+            try {
+                const response = await fetch('/api/myscores', {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                
+                const loadingContainer = document.getElementById('loading');
+                const scoresContent = document.getElementById('scores-content');
+                
+                // Hide loading, show content
+                loadingContainer.classList.add('hidden');
+                scoresContent.classList.remove('hidden');
+                
+                // Update total score
+                document.getElementById('total-score').textContent = data.total;
+                
+                // Render individual scores
+                renderScores(data.scores);
+                
+                // Render stats
+                renderStats(data.scores);
+                
+            } catch (error) {
+                console.error('Error loading scores:', error);
+                document.getElementById('loading').innerHTML = `
+                    <div class="text-center py-12">
+                        <i class="fas fa-exclamation-triangle text-red-500 text-4xl mb-4"></i>
+                        <p class="text-red-600">Failed to load your scores. Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function renderScores(scores) {
+            const scoresListContainer = document.getElementById('scores-list');
+            
+            scores.forEach((score, index) => {
+                const scoreItem = document.createElement('div');
+                scoreItem.className = 'score-item-3d rounded-2xl p-8 border border-gray-100 fade-in-up-delay mb-6';
+                
+                const scoreColor = score.score >= 95 ? 'text-green-600 bg-gradient-to-r from-green-100 to-green-200' :
+                                 score.score >= 85 ? 'text-blue-600 bg-gradient-to-r from-blue-100 to-blue-200' :
+                                 score.score >= 75 ? 'text-yellow-600 bg-gradient-to-r from-yellow-100 to-yellow-200' :
+                                 'text-red-600 bg-gradient-to-r from-red-100 to-red-200';
+                
+                const icon = score.score >= 95 ? 'fas fa-trophy' :
+                            score.score >= 85 ? 'fas fa-medal' :
+                            score.score >= 75 ? 'fas fa-thumbs-up' :
+                            'fas fa-chart-line';
+                
+                const glowClass = score.score >= 95 ? 'pulse-element' : '';
+                
+                scoreItem.innerHTML = `
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center space-x-6">
+                            <div class="${scoreColor} w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg ${glowClass}">
+                                <i class="${icon} text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 dark:text-white text-xl mb-1">${score.task_name}</h4>
+                                <p class="text-gray-600 dark:text-gray-300 font-medium" data-translate="myscores.assignment-score">Assignment Score</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400">${score.score}</div>
+                            <div class="text-gray-500 dark:text-gray-400 font-medium">/ 100</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Bar -->
+                    <div class="bg-gray-200 rounded-full h-3 shadow-inner">
+                        <div class="progress-3d h-3 rounded-full transition-all duration-1500 ease-out" 
+                             style="width: ${score.score}%"></div>
+                    </div>
+                `;
+                
+                scoresListContainer.appendChild(scoreItem);
+                
+                // Add staggered animation delay
+                setTimeout(() => {
+                    scoreItem.classList.add('fade-in-up');
+                }, index * 150);
+            });
+        }
+        
+        function renderStats(scores) {
+            const statsContainer = document.getElementById('stats-summary');
+            
+            const average = Math.round(scores.reduce((sum, score) => sum + score.score, 0) / scores.length);
+            const highest = Math.max(...scores.map(s => s.score));
+            const lowest = Math.min(...scores.map(s => s.score));
+            
+            const stats = [
+                { label: themeLangManager?.t('myscores.average-score') || 'Average Score', value: average, icon: 'fas fa-calculator', color: 'text-blue-600 bg-gradient-to-r from-blue-100 to-blue-200 dark:text-blue-400 dark:from-blue-900/50 dark:to-blue-800/50' },
+                { label: themeLangManager?.t('myscores.highest-score') || 'Highest Score', value: highest, icon: 'fas fa-arrow-up', color: 'text-green-600 bg-gradient-to-r from-green-100 to-green-200 dark:text-green-400 dark:from-green-900/50 dark:to-green-800/50' },
+                { label: themeLangManager?.t('myscores.lowest-score') || 'Lowest Score', value: lowest, icon: 'fas fa-arrow-down', color: 'text-red-600 bg-gradient-to-r from-red-100 to-red-200 dark:text-red-400 dark:from-red-900/50 dark:to-red-800/50' }
+            ];
+            
+            stats.forEach((stat, index) => {
+                const statCard = document.createElement('div');
+                statCard.className = 'score-item-3d rounded-2xl p-8 text-center fade-in-up-delay';
+                
+                const glowClass = stat.value === highest ? 'pulse-element' : '';
+                
+                statCard.innerHTML = `
+                    <div class="${stat.color} w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg ${glowClass}">
+                        <i class="${stat.icon} text-xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-gray-200 dark:to-gray-400 bg-clip-text text-transparent mb-2">${stat.value}</div>
+                    <div class="text-gray-600 dark:text-gray-300 font-medium">${stat.label}</div>
+                `;
+                
+                statsContainer.appendChild(statCard);
+                
+                // Add staggered animation delay
+                setTimeout(() => {
+                    statCard.classList.add('fade-in-up');
+                }, (index + 1) * 200);
+            });
+        }
+        
+        // Check authentication and load page
+        async function initializePage() {
+            // Check auth status
+            try {
+                const response = await fetch('/api/auth-status', {
+                    credentials: 'include'
+                });
+                const authStatus = await response.json();
+                
+                if (!authStatus.authenticated) {
+                    // Redirect to login if not authenticated
+                    window.location.href = '/login.html';
+                    return;
+                }
+                
+                // Update navigation for authenticated user
+                const authNavigation = document.getElementById('authNavigation');
+                authNavigation.innerHTML = `
+                    <a href="/submit.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg" data-translate="nav.submit">Task Submit</a>
+                    <a href="/profile.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg" data-translate="nav.profile">Profile</a>
+                    <button onclick="logout()" class="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg">
+                        <i class="fas fa-sign-out-alt mr-1"></i><span data-translate="nav.logout">Logout</span>
+                    </button>
+                `;
+                
+                // Load user's scores
+                loadMyScores();
+                
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                window.location.href = '/login.html';
+            }
+        }
+        
+        async function logout() {
+            try {
+                await fetch('/api/logout', { 
+                    method: 'POST',
+                    credentials: 'include'
+                });
+                window.location.href = '/';
+            } catch (error) {
+                console.error('Logout failed:', error);
+            }
+        }
+        
+        // Initialize page when DOM loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePage();
+            // Update translations after initialization
+            setTimeout(() => {
+                if (window.themeLangManager) {
+                    themeLangManager.updateLanguage();
+                }
+            }, 200);
+        });
+    </script>
+    <script src="/js/theme-lang.js"></script>
+</body>
+</html>

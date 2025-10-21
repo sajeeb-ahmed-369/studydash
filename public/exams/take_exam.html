@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Web Design & JavaScript Final Exam</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fc;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .section {
+      margin-top: 30px;
+      border-top: 2px solid #eee;
+      padding-top: 20px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      display: block;
+      margin: 30px auto 10px;
+      padding: 12px 25px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    .success-msg {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Web Design & JavaScript Final Exam</h1>
+    <div id="exam-container"></div>
+    <button id="finishBtn">Submit Exam</button>
+    <div id="successMsg" class="success-msg"></div>
+  </div>
+
+  <script>
+    const examContainer = document.getElementById('exam-container');
+    const successMsg = document.getElementById('successMsg');
+
+    // ✅ Static default questions (no backend needed)
+    const questions = [
+      {
+        id: 1,
+        type: 'mcq',
+        question_text: 'Which HTML5 tag is used to define navigation links?',
+        choices: { a: '<section>', b: '<header>', c: '<nav>', d: '<navlink>' }
+      },
+      {
+        id: 2,
+        type: 'mcq',
+        question_text: 'Bootstrap grid uses how many columns by default?',
+        choices: { a: '4', b: '8', c: '12', d: '16' }
+      },
+      {
+        id: 3,
+        type: 'mcq',
+        question_text: 'Which CSS property centers a block element horizontally?',
+        choices: { a: 'align:center;', b: 'margin: 0 auto;', c: 'text-align:center;', d: 'center:align;' }
+      },
+      {
+        id: 4,
+        type: 'mcq',
+        question_text: 'What does === mean in JavaScript?',
+        choices: { a: 'Assigns value', b: 'Loose equality', c: 'Strict equality (type + value)', d: 'None' }
+      },
+      {
+        id: 5,
+        type: 'text',
+        question_text: 'Explain the HTML5 semantic elements and their importance.'
+      },
+      {
+        id: 6,
+        type: 'text',
+        question_text: 'Describe the CSS box model and its parts.'
+      },
+      {
+        id: 7,
+        type: 'text',
+        question_text: 'Write JavaScript code to print numbers 1–100 using a loop.'
+      },
+      {
+        id: 8,
+        type: 'text',
+        question_text: 'Create a responsive navbar layout using Bootstrap 5 grid.'
+      },
+    ];
+
+    // ✅ Render all questions
+    questions.forEach((q, index) => {
+      const div = document.createElement('div');
+      div.className = 'question';
+
+      const qTitle = document.createElement('h3');
+      qTitle.textContent = `${index + 1}. ${q.question_text}`;
+      div.appendChild(qTitle);
+
+      if (q.type === 'mcq') {
+        for (const key in q.choices) {
+          const label = document.createElement('label');
+          label.innerHTML = `<input type="radio" name="q${q.id}" value="${q.choices[key]}"> ${q.choices[key]}`;
+          div.appendChild(label);
+        }
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.name = `q${q.id}`;
+        div.appendChild(textarea);
+      }
+
+      examContainer.appendChild(div);
+    });
+
+    // ✅ Submit logic
+    document.getElementById('finishBtn').addEventListener('click', () => {
+      const answers = {};
+      questions.forEach(q => {
+        const name = `q${q.id}`;
+        const input = document.querySelector(`[name="${name}"]:checked`) ||
+          document.querySelector(`[name="${name}"]`);
+        if (input) answers[name] = input.value;
+      });
+
+      // For now, just show success message
+      successMsg.textContent = '✅ Exam submitted successfully!';
+      console.log('Submitted Answers:', answers);
+    });
+  </script>
+</body>
+
+</html>
