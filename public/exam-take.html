@@ -168,22 +168,7 @@
             });
             document.getElementById('exam-content').innerHTML = html;
         }
- document.addEventListener('keydown', (e) => {
-    if ((e.ctrlKey || e.metaKey) && ['c','v','x','a'].includes(e.key.toLowerCase())) {
-      e.preventDefault();
-    }
-  });
-
-         document.addEventListener('DOMContentLoaded', () => {
-    const textareas = document.querySelectorAll('textarea');
-    textareas.forEach(textarea => {
-      textarea.addEventListener('copy', e => e.preventDefault());
-      textarea.addEventListener('paste', e => e.preventDefault());
-      textarea.addEventListener('cut', e => e.preventDefault());
-      textarea.addEventListener('contextmenu', e => e.preventDefault()); // disable right-click
-    });
-  });
-        
+    
         document.getElementById('submitExam').addEventListener('click', () => {
             alert('✅ Exam submitted successfully! ');
         });
